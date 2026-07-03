@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, ReactNode } from 'react';
 import Icon from '@/components/ui/icon';
+import { useReveal } from '@/hooks/use-reveal';
 import {
   Accordion,
   AccordionContent,
@@ -52,6 +53,33 @@ const downloadChecklist = () => {
 
 const Rule = () => <div className="h-px w-full bg-border" />;
 
+const Reveal = ({
+  children,
+  className = '',
+  delay = 0,
+}: {
+  children: ReactNode;
+  className?: string;
+  delay?: number;
+}) => {
+  const { ref, visible } = useReveal<HTMLDivElement>();
+  return (
+    <div
+      ref={ref}
+      className={`reveal ${visible ? 'reveal-visible' : ''} ${className}`}
+      style={{ transitionDelay: visible ? `${delay}ms` : '0ms' }}
+    >
+      {children}
+    </div>
+  );
+};
+
+const SectionLabel = ({ children }: { children: ReactNode }) => (
+  <span className="font-mono-editorial text-[11px] font-semibold uppercase tracking-[0.25em] text-accent">
+    {children}
+  </span>
+);
+
 const Index = () => {
   const [submitted, setSubmitted] = useState(false);
 
@@ -63,14 +91,14 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-primary selection:text-primary-foreground">
       {/* Top bar */}
-      <header className="border-b border-border">
+      <header className="sticky top-0 z-20 border-b border-border bg-background/90 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
           <div className="font-display text-2xl font-semibold tracking-tight text-primary">
             Разбор&nbsp;франшиз
           </div>
           <button
             onClick={scrollToForm}
-            className="hidden bg-accent px-5 py-2.5 font-mono-editorial text-[11px] font-semibold uppercase tracking-[0.2em] text-accent-foreground transition-colors hover:bg-primary hover:text-primary-foreground sm:inline-block"
+            className="btn-sweep hidden border border-primary px-5 py-2.5 font-mono-editorial text-[11px] font-semibold uppercase tracking-[0.2em] text-primary hover:text-primary-foreground sm:inline-block"
           >
             Оставить заявку
           </button>
@@ -83,7 +111,7 @@ const Index = () => {
         <div className="relative mx-auto grid max-w-6xl grid-cols-1 gap-10 px-6 py-16 md:grid-cols-12 md:py-24">
           <div className="md:col-span-8">
             <div className="fade-up mb-6 flex items-center gap-3 font-mono-editorial text-[11px] uppercase tracking-[0.25em] text-accent">
-              <span className="inline-block h-px w-8 bg-accent" />
+              <span className="inline-block h-px w-8 animate-pulse bg-accent" />
               Независимый разбор · без рекламы франчайзеров
             </div>
             <h1
@@ -110,7 +138,7 @@ const Index = () => {
             >
               <button
                 onClick={scrollToForm}
-                className="group inline-flex items-center justify-center gap-3 bg-accent px-8 py-4 text-accent-foreground shadow-[4px_4px_0_0_hsl(var(--primary))] transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_0_hsl(var(--primary))]"
+                className="btn-sweep group inline-flex items-center justify-center gap-3 bg-primary px-8 py-4 text-primary-foreground hover:text-primary-foreground"
               >
                 <span className="text-base font-semibold">
                   Разобрать мою франшизу бесплатно
@@ -118,7 +146,7 @@ const Index = () => {
                 <Icon
                   name="ArrowDown"
                   size={18}
-                  className="transition-transform group-hover:translate-y-0.5"
+                  className="transition-transform duration-300 group-hover:translate-y-1"
                 />
               </button>
               <span className="font-mono-editorial text-[11px] font-medium uppercase tracking-[0.15em] text-foreground/65">
@@ -138,8 +166,12 @@ const Index = () => {
                   ['Что смотрю', 'Договор, цифры, условия'],
                   ['Чью сторону занимаю', 'Вашу, не продавца'],
                   ['Сколько стоит', 'Пока — бесплатно'],
-                ].map(([k, v]) => (
-                  <div key={k}>
+                ].map(([k, v], i) => (
+                  <div
+                    key={k}
+                    className="fade-up border-l-2 border-transparent pl-4 transition-colors duration-500 hover:border-accent"
+                    style={{ animationDelay: `${0.5 + i * 0.1}s` }}
+                  >
                     <div className="font-mono-editorial text-[10px] font-medium uppercase tracking-[0.2em] text-foreground/55">
                       {k}
                     </div>
@@ -157,12 +189,10 @@ const Index = () => {
       {/* 2. PROBLEM */}
       <section className="border-b border-border">
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-6 py-16 md:grid-cols-12 md:py-24">
-          <div className="md:col-span-4">
-            <span className="font-mono-editorial text-[11px] font-semibold uppercase tracking-[0.25em] text-accent">
-              01 — Проблема
-            </span>
-          </div>
-          <div className="md:col-span-8">
+          <Reveal className="md:col-span-4">
+            <SectionLabel>01 — Проблема</SectionLabel>
+          </Reveal>
+          <Reveal className="md:col-span-8" delay={100}>
             <h2 className="font-display text-4xl font-medium leading-tight text-foreground md:text-5xl">
               Франшизу продаёт тот, кому выгодно вам её продать.
             </h2>
@@ -177,7 +207,7 @@ const Index = () => {
                 равна работе отдела продаж франчайзера.
               </p>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -185,14 +215,12 @@ const Index = () => {
       <section className="border-b border-border bg-secondary/40">
         <div className="mx-auto max-w-6xl px-6 py-16 md:py-24">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-12">
-            <div className="md:col-span-4">
-              <span className="font-mono-editorial text-[11px] font-semibold uppercase tracking-[0.25em] text-accent">
-                02 — Решение
-              </span>
+            <Reveal className="md:col-span-4">
+              <SectionLabel>02 — Решение</SectionLabel>
               <h2 className="mt-4 font-display text-4xl font-medium leading-tight text-foreground md:text-5xl">
                 Я разбираю франшизу с вашей стороны, а не со стороны продавца.
               </h2>
-            </div>
+            </Reveal>
             <div className="md:col-span-8">
               <ol className="divide-y divide-border border-y border-border">
                 {[
@@ -202,29 +230,34 @@ const Index = () => {
                   ['Условия договора и штрафы', 'Что вы подписываете и чем рискуете при выходе.'],
                   ['Честный вывод', 'Стоит ли заходить именно вам — с учётом вашего бюджета и города.'],
                 ].map(([title, desc], i) => (
-                  <li
-                    key={title}
-                    className="group flex gap-6 py-6 transition-colors hover:bg-background/60"
-                  >
-                    <span className="font-mono-editorial text-sm text-accent">
-                      0{i + 1}
-                    </span>
-                    <div>
-                      <h3 className="font-display text-2xl text-foreground">
-                        {title}
-                      </h3>
-                      <p className="mt-1 text-foreground/80">{desc}</p>
-                    </div>
-                  </li>
+                  <Reveal key={title} delay={i * 80}>
+                    <li className="group flex gap-6 py-6 pl-3 transition-all duration-300 hover:bg-background hover:pl-5">
+                      <span className="font-mono-editorial text-sm text-accent transition-transform duration-300 group-hover:scale-110">
+                        0{i + 1}
+                      </span>
+                      <div>
+                        <h3 className="font-display text-2xl text-foreground">
+                          {title}
+                        </h3>
+                        <p className="mt-1 text-foreground/80">{desc}</p>
+                      </div>
+                    </li>
+                  </Reveal>
                 ))}
               </ol>
-              <button
-                onClick={scrollToForm}
-                className="group mt-10 inline-flex items-center gap-3 bg-accent px-7 py-3.5 text-accent-foreground shadow-[4px_4px_0_0_hsl(var(--primary))] transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_0_hsl(var(--primary))]"
-              >
-                <span className="font-semibold">Получить разбор моей франшизы</span>
-                <Icon name="ArrowRight" size={18} className="transition-transform group-hover:translate-x-0.5" />
-              </button>
+              <Reveal delay={400}>
+                <button
+                  onClick={scrollToForm}
+                  className="btn-sweep group mt-10 inline-flex items-center gap-3 border border-primary px-7 py-3.5 text-primary hover:text-primary-foreground"
+                >
+                  <span className="font-semibold">Получить разбор моей франшизы</span>
+                  <Icon
+                    name="ArrowRight"
+                    size={18}
+                    className="transition-transform duration-300 group-hover:translate-x-1"
+                  />
+                </button>
+              </Reveal>
             </div>
           </div>
         </div>
@@ -233,27 +266,29 @@ const Index = () => {
       {/* 4. WHY TRUST */}
       <section className="border-b border-border">
         <div className="mx-auto max-w-6xl px-6 py-16 md:py-24">
-          <span className="font-mono-editorial text-[11px] font-semibold uppercase tracking-[0.25em] text-accent">
-            03 — Почему мне можно верить
-          </span>
+          <Reveal>
+            <SectionLabel>03 — Почему мне можно верить</SectionLabel>
+          </Reveal>
           <div className="mt-10 grid grid-cols-1 gap-px overflow-hidden border border-border bg-border md:grid-cols-3">
             {[
               ['ShieldOff', 'Не зарабатываю на франчайзерах', 'Нет партнёрских выплат и откатов. Мне всё равно, купите вы франшизу или нет.'],
               ['Scale', 'Не разоблачаю ради хайпа', 'Если франшиза хорошая — так и скажу. Задача не напугать, а показать факты.'],
               ['FileText', 'Разбираю по фактам', 'Договор, цифры, условия. Где факт, а где моя оценка — помечаю отдельно.'],
-            ].map(([icon, title, desc]) => (
-              <div key={title} className="bg-background p-8">
-                <Icon
-                  name={icon as string}
-                  size={26}
-                  className="text-primary"
-                  strokeWidth={1.5}
-                />
-                <h3 className="mt-6 font-display text-2xl text-foreground">
-                  {title}
-                </h3>
-                <p className="mt-3 leading-relaxed text-foreground/80">{desc}</p>
-              </div>
+            ].map(([icon, title, desc], i) => (
+              <Reveal key={title} delay={i * 120}>
+                <div className="group h-full bg-background p-8 transition-colors duration-300 hover:bg-secondary/60">
+                  <Icon
+                    name={icon as string}
+                    size={26}
+                    className="text-primary transition-transform duration-300 group-hover:-translate-y-1"
+                    strokeWidth={1.5}
+                  />
+                  <h3 className="mt-6 font-display text-2xl text-foreground">
+                    {title}
+                  </h3>
+                  <p className="mt-3 leading-relaxed text-foreground/80">{desc}</p>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -262,80 +297,83 @@ const Index = () => {
       {/* 5. HOW I WORK */}
       <section className="border-b border-border">
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-6 py-16 md:grid-cols-12 md:py-24">
-          <div className="md:col-span-4">
-            <span className="font-mono-editorial text-[11px] font-semibold uppercase tracking-[0.25em] text-accent">
-              04 — Как я работаю
-            </span>
+          <Reveal className="md:col-span-4">
+            <SectionLabel>04 — Как я работаю</SectionLabel>
             <h2 className="mt-4 font-display text-4xl font-medium leading-tight text-foreground md:text-5xl">
               Методика, а не интуиция.
             </h2>
-          </div>
+          </Reveal>
           <div className="md:col-span-8">
             <div className="space-y-8">
               {[
                 ['01', 'Методика разбора из 6 шагов', 'Каждую франшизу прогоняю по одному и тому же маршруту — от структуры вложений до пунктов договора.'],
                 ['02', 'Список франшиз, проверенных временем', 'Опираюсь на базу брендов, которые работают 10+ лет, — чтобы сравнивать с теми, кто устоял.'],
                 ['03', 'База знаний по нишам', 'Общепит, розница, услуги — у каждой ниши свои ловушки. Смотрю на вашу франшизу в контексте её рынка.'],
-              ].map(([num, title, desc]) => (
-                <div
-                  key={num}
-                  className="flex flex-col gap-4 border-b border-border pb-8 sm:flex-row sm:gap-8"
-                >
-                  <span className="font-display text-5xl leading-none text-accent">
-                    {num}
-                  </span>
-                  <div>
-                    <h3 className="font-display text-2xl text-foreground">
-                      {title}
-                    </h3>
-                    <p className="mt-2 max-w-xl text-foreground/80">{desc}</p>
+              ].map(([num, title, desc], i) => (
+                <Reveal key={num} delay={i * 120}>
+                  <div className="group flex flex-col gap-4 border-b border-border pb-8 sm:flex-row sm:gap-8">
+                    <span className="font-display text-5xl leading-none text-accent transition-transform duration-300 group-hover:scale-110">
+                      {num}
+                    </span>
+                    <div>
+                      <h3 className="font-display text-2xl text-foreground">
+                        {title}
+                      </h3>
+                      <p className="mt-2 max-w-xl text-foreground/80">{desc}</p>
+                    </div>
                   </div>
-                </div>
+                </Reveal>
               ))}
             </div>
-            <p className="mt-8 border-l-2 border-accent pl-5 font-display text-xl italic text-foreground/75">
-              Пока это старт проекта — первые разборы делаю бесплатно, чтобы
-              собрать реальные кейсы.
-            </p>
+            <Reveal delay={400}>
+              <p className="mt-8 border-l-2 border-accent pl-5 font-display text-xl italic text-foreground/75">
+                Пока это старт проекта — первые разборы делаю бесплатно, чтобы
+                собрать реальные кейсы.
+              </p>
+            </Reveal>
           </div>
         </div>
       </section>
 
       {/* CHECKLIST DOWNLOAD */}
       <section className="border-b border-border bg-primary text-primary-foreground">
-        <div className="mx-auto flex max-w-6xl flex-col items-start gap-8 px-6 py-14 md:flex-row md:items-center md:justify-between">
-          <div className="max-w-xl">
-            <span className="font-mono-editorial text-[11px] uppercase tracking-[0.25em] text-primary-foreground/60">
-              Бесплатный материал
-            </span>
-            <h2 className="mt-3 font-display text-3xl font-medium leading-tight md:text-4xl">
-              12 вопросов, которые нужно задать франчайзеру
-            </h2>
-            <p className="mt-3 text-primary-foreground/75">
-              Забирайте чек-лист и задайте эти вопросы до того, как подпишете
-              договор. Если на какой-то из них вам не ответят прямо — это уже
-              ответ.
-            </p>
+        <Reveal>
+          <div className="mx-auto flex max-w-6xl flex-col items-start gap-8 px-6 py-14 md:flex-row md:items-center md:justify-between">
+            <div className="max-w-xl">
+              <span className="font-mono-editorial text-[11px] uppercase tracking-[0.25em] text-primary-foreground/60">
+                Бесплатный материал
+              </span>
+              <h2 className="mt-3 font-display text-3xl font-medium leading-tight md:text-4xl">
+                12 вопросов, которые нужно задать франчайзеру
+              </h2>
+              <p className="mt-3 text-primary-foreground/75">
+                Забирайте чек-лист и задайте эти вопросы до того, как подпишете
+                договор. Если на какой-то из них вам не ответят прямо — это уже
+                ответ.
+              </p>
+            </div>
+            <button
+              onClick={downloadChecklist}
+              className="btn-sweep btn-sweep-invert group inline-flex shrink-0 items-center gap-3 border border-background px-7 py-4 text-primary-foreground hover:text-primary"
+            >
+              <Icon
+                name="Download"
+                size={18}
+                className="transition-transform duration-300 group-hover:translate-y-0.5"
+              />
+              <span className="font-semibold">Скачать чек-лист</span>
+            </button>
           </div>
-          <button
-            onClick={downloadChecklist}
-            className="inline-flex shrink-0 items-center gap-3 bg-accent px-7 py-4 text-accent-foreground shadow-[4px_4px_0_0_hsl(42_40%_94%)] transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_0_hsl(42_40%_94%)]"
-          >
-            <Icon name="Download" size={18} />
-            <span className="font-semibold">Скачать чек-лист</span>
-          </button>
-        </div>
+        </Reveal>
       </section>
 
       {/* 6. FAQ */}
       <section className="border-b border-border">
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-6 py-16 md:grid-cols-12 md:py-24">
-          <div className="md:col-span-4">
-            <span className="font-mono-editorial text-[11px] font-semibold uppercase tracking-[0.25em] text-accent">
-              05 — Частые вопросы
-            </span>
-          </div>
-          <div className="md:col-span-8">
+          <Reveal className="md:col-span-4">
+            <SectionLabel>05 — Частые вопросы</SectionLabel>
+          </Reveal>
+          <Reveal className="md:col-span-8" delay={100}>
             <Accordion type="single" collapsible className="w-full">
               {[
                 ['Это правда бесплатно?', 'Да. Сейчас я собираю первые кейсы, поэтому разборы бесплатные. Ничего продавать вас не обязываю.'],
@@ -357,7 +395,7 @@ const Index = () => {
                 </AccordionItem>
               ))}
             </Accordion>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -365,7 +403,7 @@ const Index = () => {
       <section id="form" className="border-b border-border bg-secondary/40">
         <div className="mx-auto max-w-6xl px-6 py-16 md:py-24">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-12">
-            <div className="md:col-span-5">
+            <Reveal className="md:col-span-5">
               <span className="font-mono-editorial text-[11px] uppercase tracking-[0.25em] text-accent">
                 06 — Заявка
               </span>
@@ -376,11 +414,11 @@ const Index = () => {
                 Напишите, что присматриваете и как с вами связаться. Разберу и
                 вернусь лично.
               </p>
-            </div>
+            </Reveal>
 
-            <div className="md:col-span-7">
+            <Reveal className="md:col-span-7" delay={150}>
               {submitted ? (
-                <div className="flex h-full flex-col justify-center border border-border bg-background p-10">
+                <div className="flex h-full flex-col justify-center border border-border bg-background p-10 animate-scale-in">
                   <Icon
                     name="Check"
                     size={32}
@@ -407,7 +445,7 @@ const Index = () => {
                       required
                       type="text"
                       placeholder="Название франшизы или ссылка"
-                      className="w-full border-b border-border bg-transparent py-3 text-lg text-foreground outline-none transition-colors placeholder:text-foreground/30 focus:border-primary"
+                      className="w-full border-b border-border bg-transparent py-3 text-lg text-foreground outline-none transition-colors focus:border-primary placeholder:text-foreground/30"
                     />
                   </div>
                   <div>
@@ -418,7 +456,7 @@ const Index = () => {
                       required
                       type="text"
                       placeholder="Telegram / телефон / email"
-                      className="w-full border-b border-border bg-transparent py-3 text-lg text-foreground outline-none transition-colors placeholder:text-foreground/30 focus:border-primary"
+                      className="w-full border-b border-border bg-transparent py-3 text-lg text-foreground outline-none transition-colors focus:border-primary placeholder:text-foreground/30"
                     />
                   </div>
                   <div>
@@ -428,12 +466,12 @@ const Index = () => {
                     <input
                       type="text"
                       placeholder="Как к вам обращаться"
-                      className="w-full border-b border-border bg-transparent py-3 text-lg text-foreground outline-none transition-colors placeholder:text-foreground/30 focus:border-primary"
+                      className="w-full border-b border-border bg-transparent py-3 text-lg text-foreground outline-none transition-colors focus:border-primary placeholder:text-foreground/30"
                     />
                   </div>
                   <button
                     type="submit"
-                    className="w-full bg-accent px-8 py-4 text-base font-semibold text-accent-foreground shadow-[4px_4px_0_0_hsl(var(--primary))] transition-all hover:-translate-y-0.5 hover:shadow-[4px_6px_0_0_hsl(var(--primary))]"
+                    className="btn-sweep w-full bg-primary px-8 py-4 text-base font-semibold text-primary-foreground hover:text-primary-foreground"
                   >
                     Отправить заявку
                   </button>
@@ -442,7 +480,7 @@ const Index = () => {
                   </p>
                 </form>
               )}
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
