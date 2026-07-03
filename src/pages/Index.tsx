@@ -70,7 +70,7 @@ const Index = () => {
           </div>
           <button
             onClick={scrollToForm}
-            className="font-mono-editorial text-[11px] uppercase tracking-[0.2em] text-foreground/60 link-underline hidden sm:inline"
+            className="hidden bg-accent px-5 py-2.5 font-mono-editorial text-[11px] font-semibold uppercase tracking-[0.2em] text-accent-foreground transition-colors hover:bg-primary hover:text-primary-foreground sm:inline-block"
           >
             Оставить заявку
           </button>
@@ -97,7 +97,7 @@ const Index = () => {
               </span>
             </h1>
             <p
-              className="fade-up mt-8 max-w-xl text-lg leading-relaxed text-foreground/75"
+              className="fade-up mt-8 max-w-xl text-lg leading-relaxed text-foreground/80"
               style={{ animationDelay: '0.2s' }}
             >
               Бесплатно разберу франшизу, которую вы присматриваете: реальные
@@ -110,9 +110,9 @@ const Index = () => {
             >
               <button
                 onClick={scrollToForm}
-                className="group inline-flex items-center justify-center gap-3 bg-primary px-8 py-4 text-primary-foreground transition-colors hover:bg-primary/90"
+                className="group inline-flex items-center justify-center gap-3 bg-accent px-8 py-4 text-accent-foreground shadow-[4px_4px_0_0_hsl(var(--primary))] transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_0_hsl(var(--primary))]"
               >
-                <span className="text-base font-medium">
+                <span className="text-base font-semibold">
                   Разобрать мою франшизу бесплатно
                 </span>
                 <Icon
@@ -121,7 +121,7 @@ const Index = () => {
                   className="transition-transform group-hover:translate-y-0.5"
                 />
               </button>
-              <span className="font-mono-editorial text-[11px] uppercase tracking-[0.15em] text-foreground/45">
+              <span className="font-mono-editorial text-[11px] font-medium uppercase tracking-[0.15em] text-foreground/65">
                 Отвечу лично
               </span>
             </div>
@@ -140,7 +140,7 @@ const Index = () => {
                   ['Сколько стоит', 'Пока — бесплатно'],
                 ].map(([k, v]) => (
                   <div key={k}>
-                    <div className="font-mono-editorial text-[10px] uppercase tracking-[0.2em] text-foreground/40">
+                    <div className="font-mono-editorial text-[10px] font-medium uppercase tracking-[0.2em] text-foreground/55">
                       {k}
                     </div>
                     <div className="mt-1 font-display text-2xl text-primary">
@@ -158,7 +158,7 @@ const Index = () => {
       <section className="border-b border-border">
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-6 py-16 md:grid-cols-12 md:py-24">
           <div className="md:col-span-4">
-            <span className="font-mono-editorial text-[11px] uppercase tracking-[0.25em] text-foreground/40">
+            <span className="font-mono-editorial text-[11px] font-semibold uppercase tracking-[0.25em] text-accent">
               01 — Проблема
             </span>
           </div>
@@ -166,7 +166,7 @@ const Index = () => {
             <h2 className="font-display text-4xl font-medium leading-tight text-foreground md:text-5xl">
               Франшизу продаёт тот, кому выгодно вам её продать.
             </h2>
-            <div className="mt-8 max-w-2xl space-y-5 text-lg leading-relaxed text-foreground/75">
+            <div className="mt-8 max-w-2xl space-y-5 text-lg leading-relaxed text-foreground/80">
               <p>
                 На презентации вам покажут флагманскую точку в проходном месте и
                 график, который идёт только вверх. Скрытые платежи, обязательные
@@ -186,7 +186,7 @@ const Index = () => {
         <div className="mx-auto max-w-6xl px-6 py-16 md:py-24">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-12">
             <div className="md:col-span-4">
-              <span className="font-mono-editorial text-[11px] uppercase tracking-[0.25em] text-foreground/40">
+              <span className="font-mono-editorial text-[11px] font-semibold uppercase tracking-[0.25em] text-accent">
                 02 — Решение
               </span>
               <h2 className="mt-4 font-display text-4xl font-medium leading-tight text-foreground md:text-5xl">
@@ -213,17 +213,17 @@ const Index = () => {
                       <h3 className="font-display text-2xl text-foreground">
                         {title}
                       </h3>
-                      <p className="mt-1 text-foreground/70">{desc}</p>
+                      <p className="mt-1 text-foreground/80">{desc}</p>
                     </div>
                   </li>
                 ))}
               </ol>
               <button
                 onClick={scrollToForm}
-                className="mt-10 inline-flex items-center gap-3 border border-primary px-7 py-3.5 text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+                className="group mt-10 inline-flex items-center gap-3 bg-accent px-7 py-3.5 text-accent-foreground shadow-[4px_4px_0_0_hsl(var(--primary))] transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_0_hsl(var(--primary))]"
               >
-                <span className="font-medium">Получить разбор моей франшизы</span>
-                <Icon name="ArrowRight" size={18} />
+                <span className="font-semibold">Получить разбор моей франшизы</span>
+                <Icon name="ArrowRight" size={18} className="transition-transform group-hover:translate-x-0.5" />
               </button>
             </div>
           </div>
@@ -233,7 +233,7 @@ const Index = () => {
       {/* 4. WHY TRUST */}
       <section className="border-b border-border">
         <div className="mx-auto max-w-6xl px-6 py-16 md:py-24">
-          <span className="font-mono-editorial text-[11px] uppercase tracking-[0.25em] text-foreground/40">
+          <span className="font-mono-editorial text-[11px] font-semibold uppercase tracking-[0.25em] text-accent">
             03 — Почему мне можно верить
           </span>
           <div className="mt-10 grid grid-cols-1 gap-px overflow-hidden border border-border bg-border md:grid-cols-3">
@@ -252,7 +252,7 @@ const Index = () => {
                 <h3 className="mt-6 font-display text-2xl text-foreground">
                   {title}
                 </h3>
-                <p className="mt-3 leading-relaxed text-foreground/70">{desc}</p>
+                <p className="mt-3 leading-relaxed text-foreground/80">{desc}</p>
               </div>
             ))}
           </div>
@@ -263,7 +263,7 @@ const Index = () => {
       <section className="border-b border-border">
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-6 py-16 md:grid-cols-12 md:py-24">
           <div className="md:col-span-4">
-            <span className="font-mono-editorial text-[11px] uppercase tracking-[0.25em] text-foreground/40">
+            <span className="font-mono-editorial text-[11px] font-semibold uppercase tracking-[0.25em] text-accent">
               04 — Как я работаю
             </span>
             <h2 className="mt-4 font-display text-4xl font-medium leading-tight text-foreground md:text-5xl">
@@ -288,12 +288,12 @@ const Index = () => {
                     <h3 className="font-display text-2xl text-foreground">
                       {title}
                     </h3>
-                    <p className="mt-2 max-w-xl text-foreground/70">{desc}</p>
+                    <p className="mt-2 max-w-xl text-foreground/80">{desc}</p>
                   </div>
                 </div>
               ))}
             </div>
-            <p className="mt-8 font-display text-xl italic text-foreground/60">
+            <p className="mt-8 border-l-2 border-accent pl-5 font-display text-xl italic text-foreground/75">
               Пока это старт проекта — первые разборы делаю бесплатно, чтобы
               собрать реальные кейсы.
             </p>
@@ -319,10 +319,10 @@ const Index = () => {
           </div>
           <button
             onClick={downloadChecklist}
-            className="inline-flex shrink-0 items-center gap-3 bg-background px-7 py-4 text-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+            className="inline-flex shrink-0 items-center gap-3 bg-accent px-7 py-4 text-accent-foreground shadow-[4px_4px_0_0_hsl(42_40%_94%)] transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_0_hsl(42_40%_94%)]"
           >
             <Icon name="Download" size={18} />
-            <span className="font-medium">Скачать чек-лист</span>
+            <span className="font-semibold">Скачать чек-лист</span>
           </button>
         </div>
       </section>
@@ -331,7 +331,7 @@ const Index = () => {
       <section className="border-b border-border">
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-6 py-16 md:grid-cols-12 md:py-24">
           <div className="md:col-span-4">
-            <span className="font-mono-editorial text-[11px] uppercase tracking-[0.25em] text-foreground/40">
+            <span className="font-mono-editorial text-[11px] font-semibold uppercase tracking-[0.25em] text-accent">
               05 — Частые вопросы
             </span>
           </div>
@@ -351,7 +351,7 @@ const Index = () => {
                   <AccordionTrigger className="py-6 text-left font-display text-2xl font-medium text-foreground hover:no-underline hover:text-primary">
                     {q}
                   </AccordionTrigger>
-                  <AccordionContent className="pb-6 text-base leading-relaxed text-foreground/70">
+                  <AccordionContent className="pb-6 text-base leading-relaxed text-foreground/80">
                     {a}
                   </AccordionContent>
                 </AccordionItem>
@@ -372,7 +372,7 @@ const Index = () => {
               <h2 className="mt-4 font-display text-4xl font-medium leading-tight text-foreground md:text-5xl">
                 Оставьте франшизу — пришлю честный разбор.
               </h2>
-              <p className="mt-6 max-w-md text-foreground/70">
+              <p className="mt-6 max-w-md text-foreground/80">
                 Напишите, что присматриваете и как с вами связаться. Разберу и
                 вернусь лично.
               </p>
@@ -390,7 +390,7 @@ const Index = () => {
                   <h3 className="mt-5 font-display text-3xl text-foreground">
                     Заявка принята
                   </h3>
-                  <p className="mt-3 text-foreground/70">
+                  <p className="mt-3 text-foreground/80">
                     Спасибо. Я получил вашу франшизу и свяжусь с вами лично.
                   </p>
                 </div>
@@ -400,7 +400,7 @@ const Index = () => {
                   className="space-y-6 border border-border bg-background p-8 md:p-10"
                 >
                   <div>
-                    <label className="mb-2 block font-mono-editorial text-[11px] uppercase tracking-[0.15em] text-foreground/50">
+                    <label className="mb-2 block font-mono-editorial text-[11px] uppercase tracking-[0.15em] text-foreground/70">
                       Какую франшизу присматриваете? *
                     </label>
                     <input
@@ -411,7 +411,7 @@ const Index = () => {
                     />
                   </div>
                   <div>
-                    <label className="mb-2 block font-mono-editorial text-[11px] uppercase tracking-[0.15em] text-foreground/50">
+                    <label className="mb-2 block font-mono-editorial text-[11px] uppercase tracking-[0.15em] text-foreground/70">
                       Как с вами связаться? *
                     </label>
                     <input
@@ -422,7 +422,7 @@ const Index = () => {
                     />
                   </div>
                   <div>
-                    <label className="mb-2 block font-mono-editorial text-[11px] uppercase tracking-[0.15em] text-foreground/50">
+                    <label className="mb-2 block font-mono-editorial text-[11px] uppercase tracking-[0.15em] text-foreground/70">
                       Имя
                     </label>
                     <input
@@ -433,11 +433,11 @@ const Index = () => {
                   </div>
                   <button
                     type="submit"
-                    className="w-full bg-primary px-8 py-4 text-base font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+                    className="w-full bg-accent px-8 py-4 text-base font-semibold text-accent-foreground shadow-[4px_4px_0_0_hsl(var(--primary))] transition-all hover:-translate-y-0.5 hover:shadow-[4px_6px_0_0_hsl(var(--primary))]"
                   >
                     Отправить заявку
                   </button>
-                  <p className="text-sm text-foreground/50">
+                  <p className="text-sm text-foreground/70">
                     Отвечу лично. Не передаю контакты третьим лицам и не спамлю.
                   </p>
                 </form>
@@ -452,7 +452,7 @@ const Index = () => {
         <Rule />
         <div className="flex flex-col items-start justify-between gap-4 pt-6 sm:flex-row sm:items-center">
           <div className="font-display text-xl text-primary">Разбор франшиз</div>
-          <p className="font-mono-editorial text-[11px] uppercase tracking-[0.15em] text-foreground/40">
+          <p className="font-mono-editorial text-[11px] font-medium uppercase tracking-[0.15em] text-foreground/60">
             Независимый анализ · Без рекламы франчайзеров
           </p>
         </div>
