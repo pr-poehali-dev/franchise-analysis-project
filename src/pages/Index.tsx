@@ -98,7 +98,7 @@ const Index = () => {
           </div>
           <button
             onClick={scrollToForm}
-            className="btn-sweep hidden border border-primary px-5 py-2.5 font-mono-editorial text-[11px] font-semibold uppercase tracking-[0.2em] text-primary hover:text-primary-foreground sm:inline-block"
+            className="hidden border border-primary bg-transparent px-5 py-2.5 font-mono-editorial text-[11px] font-semibold uppercase tracking-[0.2em] text-primary shadow-sm transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-primary hover:text-primary-foreground hover:shadow-lg active:translate-y-0 sm:inline-block"
           >
             Оставить заявку
           </button>
@@ -125,7 +125,7 @@ const Index = () => {
               </span>
             </h1>
             <p
-              className="fade-up mt-8 max-w-xl text-lg leading-relaxed text-foreground/80"
+              className="fade-up mt-8 max-w-xl text-lg leading-relaxed text-foreground/90"
               style={{ animationDelay: '0.2s' }}
             >
               Бесплатно разберу франшизу, которую вы присматриваете: реальные
@@ -138,7 +138,7 @@ const Index = () => {
             >
               <button
                 onClick={scrollToForm}
-                className="btn-sweep group inline-flex items-center justify-center gap-3 bg-primary px-8 py-4 text-primary-foreground hover:text-primary-foreground"
+                className="group inline-flex items-center justify-center gap-3 bg-primary px-8 py-4 text-primary-foreground shadow-md transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-accent hover:shadow-xl active:translate-y-0"
               >
                 <span className="text-base font-semibold">
                   Разобрать мою франшизу бесплатно
@@ -149,7 +149,7 @@ const Index = () => {
                   className="transition-transform duration-300 group-hover:translate-y-1"
                 />
               </button>
-              <span className="font-mono-editorial text-[11px] font-medium uppercase tracking-[0.15em] text-foreground/65">
+              <span className="font-mono-editorial text-[11px] font-semibold uppercase tracking-[0.15em] text-foreground/80">
                 Отвечу лично
               </span>
             </div>
@@ -172,7 +172,7 @@ const Index = () => {
                     className="fade-up border-l-2 border-transparent pl-4 transition-colors duration-500 hover:border-accent"
                     style={{ animationDelay: `${0.5 + i * 0.1}s` }}
                   >
-                    <div className="font-mono-editorial text-[10px] font-medium uppercase tracking-[0.2em] text-foreground/55">
+                    <div className="font-mono-editorial text-[10px] font-semibold uppercase tracking-[0.2em] text-foreground/70">
                       {k}
                     </div>
                     <div className="mt-1 font-display text-2xl text-primary">
@@ -196,7 +196,7 @@ const Index = () => {
             <h2 className="font-display text-4xl font-medium leading-tight text-foreground md:text-5xl">
               Франшизу продаёт тот, кому выгодно вам её продать.
             </h2>
-            <div className="mt-8 max-w-2xl space-y-5 text-lg leading-relaxed text-foreground/80">
+            <div className="mt-8 max-w-2xl space-y-5 text-lg leading-relaxed text-foreground/90">
               <p>
                 На презентации вам покажут флагманскую точку в проходном месте и
                 график, который идёт только вверх. Скрытые платежи, обязательные
@@ -239,7 +239,7 @@ const Index = () => {
                         <h3 className="font-display text-2xl text-foreground">
                           {title}
                         </h3>
-                        <p className="mt-1 text-foreground/80">{desc}</p>
+                        <p className="mt-1 text-foreground/90">{desc}</p>
                       </div>
                     </li>
                   </Reveal>
@@ -248,7 +248,7 @@ const Index = () => {
               <Reveal delay={400}>
                 <button
                   onClick={scrollToForm}
-                  className="btn-sweep group mt-10 inline-flex items-center gap-3 border border-primary px-7 py-3.5 text-primary hover:text-primary-foreground"
+                  className="group mt-10 inline-flex items-center gap-3 border border-primary bg-transparent px-7 py-3.5 text-primary shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-primary hover:text-primary-foreground hover:shadow-xl active:translate-y-0"
                 >
                   <span className="font-semibold">Получить разбор моей франшизы</span>
                   <Icon
@@ -286,7 +286,7 @@ const Index = () => {
                   <h3 className="mt-6 font-display text-2xl text-foreground">
                     {title}
                   </h3>
-                  <p className="mt-3 leading-relaxed text-foreground/80">{desc}</p>
+                  <p className="mt-3 leading-relaxed text-foreground/90">{desc}</p>
                 </div>
               </Reveal>
             ))}
@@ -319,14 +319,14 @@ const Index = () => {
                       <h3 className="font-display text-2xl text-foreground">
                         {title}
                       </h3>
-                      <p className="mt-2 max-w-xl text-foreground/80">{desc}</p>
+                      <p className="mt-2 max-w-xl text-foreground/90">{desc}</p>
                     </div>
                   </div>
                 </Reveal>
               ))}
             </div>
             <Reveal delay={400}>
-              <p className="mt-8 border-l-2 border-accent pl-5 font-display text-xl italic text-foreground/75">
+              <p className="mt-8 border-l-2 border-accent pl-5 font-display text-xl italic text-foreground/85">
                 Пока это старт проекта — первые разборы делаю бесплатно, чтобы
                 собрать реальные кейсы.
               </p>
@@ -340,13 +340,13 @@ const Index = () => {
         <Reveal>
           <div className="mx-auto flex max-w-6xl flex-col items-start gap-8 px-6 py-14 md:flex-row md:items-center md:justify-between">
             <div className="max-w-xl">
-              <span className="font-mono-editorial text-[11px] uppercase tracking-[0.25em] text-primary-foreground/60">
+              <span className="font-mono-editorial text-[11px] font-semibold uppercase tracking-[0.25em] text-primary-foreground/80">
                 Бесплатный материал
               </span>
               <h2 className="mt-3 font-display text-3xl font-medium leading-tight md:text-4xl">
                 12 вопросов, которые нужно задать франчайзеру
               </h2>
-              <p className="mt-3 text-primary-foreground/75">
+              <p className="mt-3 text-primary-foreground/90">
                 Забирайте чек-лист и задайте эти вопросы до того, как подпишете
                 договор. Если на какой-то из них вам не ответят прямо — это уже
                 ответ.
@@ -354,7 +354,7 @@ const Index = () => {
             </div>
             <button
               onClick={downloadChecklist}
-              className="btn-sweep btn-sweep-invert group inline-flex shrink-0 items-center gap-3 border border-background px-7 py-4 text-primary-foreground hover:text-primary"
+              className="group inline-flex shrink-0 items-center gap-3 border border-background bg-transparent px-7 py-4 text-primary-foreground shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-background hover:text-primary hover:shadow-xl active:translate-y-0"
             >
               <Icon
                 name="Download"
@@ -389,7 +389,7 @@ const Index = () => {
                   <AccordionTrigger className="py-6 text-left font-display text-2xl font-medium text-foreground hover:no-underline hover:text-primary">
                     {q}
                   </AccordionTrigger>
-                  <AccordionContent className="pb-6 text-base leading-relaxed text-foreground/80">
+                  <AccordionContent className="pb-6 text-base leading-relaxed text-foreground/90">
                     {a}
                   </AccordionContent>
                 </AccordionItem>
@@ -410,7 +410,7 @@ const Index = () => {
               <h2 className="mt-4 font-display text-4xl font-medium leading-tight text-foreground md:text-5xl">
                 Оставьте франшизу — пришлю честный разбор.
               </h2>
-              <p className="mt-6 max-w-md text-foreground/80">
+              <p className="mt-6 max-w-md text-foreground/90">
                 Напишите, что присматриваете и как с вами связаться. Разберу и
                 вернусь лично.
               </p>
@@ -428,7 +428,7 @@ const Index = () => {
                   <h3 className="mt-5 font-display text-3xl text-foreground">
                     Заявка принята
                   </h3>
-                  <p className="mt-3 text-foreground/80">
+                  <p className="mt-3 text-foreground/90">
                     Спасибо. Я получил вашу франшизу и свяжусь с вами лично.
                   </p>
                 </div>
@@ -438,7 +438,7 @@ const Index = () => {
                   className="space-y-6 border border-border bg-background p-8 md:p-10"
                 >
                   <div>
-                    <label className="mb-2 block font-mono-editorial text-[11px] uppercase tracking-[0.15em] text-foreground/70">
+                    <label className="mb-2 block font-mono-editorial text-[11px] uppercase tracking-[0.15em] text-foreground/85">
                       Какую франшизу присматриваете? *
                     </label>
                     <input
@@ -449,7 +449,7 @@ const Index = () => {
                     />
                   </div>
                   <div>
-                    <label className="mb-2 block font-mono-editorial text-[11px] uppercase tracking-[0.15em] text-foreground/70">
+                    <label className="mb-2 block font-mono-editorial text-[11px] uppercase tracking-[0.15em] text-foreground/85">
                       Как с вами связаться? *
                     </label>
                     <input
@@ -460,7 +460,7 @@ const Index = () => {
                     />
                   </div>
                   <div>
-                    <label className="mb-2 block font-mono-editorial text-[11px] uppercase tracking-[0.15em] text-foreground/70">
+                    <label className="mb-2 block font-mono-editorial text-[11px] uppercase tracking-[0.15em] text-foreground/85">
                       Имя
                     </label>
                     <input
@@ -471,11 +471,11 @@ const Index = () => {
                   </div>
                   <button
                     type="submit"
-                    className="btn-sweep w-full bg-primary px-8 py-4 text-base font-semibold text-primary-foreground hover:text-primary-foreground"
+                    className="w-full bg-primary px-8 py-4 text-base font-semibold text-primary-foreground shadow-md transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-accent hover:shadow-xl active:translate-y-0"
                   >
                     Отправить заявку
                   </button>
-                  <p className="text-sm text-foreground/70">
+                  <p className="text-sm text-foreground/85">
                     Отвечу лично. Не передаю контакты третьим лицам и не спамлю.
                   </p>
                 </form>
@@ -490,7 +490,7 @@ const Index = () => {
         <Rule />
         <div className="flex flex-col items-start justify-between gap-4 pt-6 sm:flex-row sm:items-center">
           <div className="font-display text-xl text-primary">Разбор франшиз</div>
-          <p className="font-mono-editorial text-[11px] font-medium uppercase tracking-[0.15em] text-foreground/60">
+          <p className="font-mono-editorial text-[11px] font-semibold uppercase tracking-[0.15em] text-foreground/75">
             Независимый анализ · Без рекламы франчайзеров
           </p>
         </div>

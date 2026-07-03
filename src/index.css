@@ -23,7 +23,7 @@
     --secondary-foreground: 34 12% 10%;
 
     --muted: 40 20% 82%;
-    --muted-foreground: 34 8% 34%;
+    --muted-foreground: 34 8% 24%;
 
     /* Сдержанный бордовый акцент #7A2E33 */
     --accent: 355 45% 33%;
@@ -147,35 +147,6 @@
       transparent 0.5px
     );
     background-size: 8px 8px;
-  }
-
-  /* Кнопка с заливкой-волной вместо тени */
-  .btn-sweep {
-    position: relative;
-    overflow: hidden;
-    isolation: isolate;
-    transition:
-      color 0.4s ease,
-      transform 0.25s ease;
-  }
-  .btn-sweep::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: hsl(var(--primary));
-    transform: translateX(-102%);
-    transition: transform 0.45s cubic-bezier(0.65, 0, 0.35, 1);
-    z-index: -1;
-  }
-  .btn-sweep:hover::before {
-    transform: translateX(0);
-  }
-  .btn-sweep:active {
-    transform: scale(0.97);
-  }
-
-  .btn-sweep-invert::before {
-    background: hsl(var(--background));
   }
 
   /* Скролл-реявление */
